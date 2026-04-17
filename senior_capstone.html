@@ -11,6 +11,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+    /* This completely removes the decorative lines */
+    header.major .date:before,
+    header.major .date:after {
+        display: none !important;
+    }
+
+    /* This centers your title and gives it some space */
+    header.major .date {
+        display: block;
+        border: none !important;
+        margin-bottom: 2rem;
+        padding: 0;
+    }
+		</style>	
 	</head>
 	<body class="is-preload">
 
@@ -40,12 +55,10 @@
 						<!-- Post -->
 							<section class="post">
 								<header class="major">
-									<span class="date">Fall 2025</span>
+									<span class="date">Automated Storage & Dispnesing System</span>
 									<!-- <h1>Senior Capstone Project:<br />
 									Automated Storage & Dispensing System</h1> -->
-									<p><br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
+									<p>Designed for the Gazzola Biology Research Lab at UIUC, this project is an autonomous mechatronic system that stores liquid cell culture media at a constant 4°C and precisely dispenses volumes between 0.5mL and 50mL into a sterile reservoir for integration with an OT-2 liquid handler.</p>
 								</header>
                                 <div class="row aln-center">
                                     <div class="col-8">
@@ -53,9 +66,21 @@
                                     </div>
                                 </div>
                                 <!-- <div class="image main"><img src="images/senior_1.png" alt="" /></div> -->
-								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sapien risus, commodo eget turpis at, elementum convallis enim turpis, lorem ipsum dolor sit amet nullam.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus. Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum.</p>
-							</section>
+								<h3>Mechanical Design & CAD Development</h3>
+        <ul>
+            <li><strong>System Architecture:</strong> Led the CAD development and physical assembly of a three-subsystem platform integrating refrigeration, fluid pumping, and a rotational reservoir. [cite: 45, 47, 49, 51, 191]</li>
+            <li><strong>Thermal Engineering:</strong> Designed a refrigeration unit utilizing <strong>Peltier modules</strong> and aluminum cold plates to maintain bulk media at a constant <strong>4°C</strong>. [cite: 48, 61, 64, 65, 101, 120]</li>
+            <li><strong>Structural Analysis:</strong> Validated frame integrity through <strong>deflection calculations</strong> for structural beams and performed <strong>static tipping simulations</strong> to ensure equipment safety. [cite: 328, 334, 335]</li>
+            <li><strong>Precision Fluidics:</strong> Engineered a dispensing system capable of delivering precise volumes between <strong>0.5 mL and 50 mL</strong> to an OT-2 liquid handler. [cite: 50, 52, 149]</li>
+        </ul>
+
+        <h3>Prototyping & Technical Validation</h3>
+        <ul>
+            <li><strong>Iterative Prototyping:</strong> Manufactured multiple iterations using <strong>5052-H32 sheet metal</strong>, T-slot framing, and water-jet cut acrylic. [cite: 66, 67, 105, 107, 108, 112, 114]</li>
+            <li><strong>Performance Testing:</strong> Conducted thermal trials to confirm sub-zero cold side capabilities and verified a smooth cooling trend across prototypes. [cite: 83, 85, 349, 359]</li>
+            <li><strong>Problem Solving:</strong> Analyzed experimental flow rates against theoretical values to identify and resolve <strong>motor stalling</strong> and tube compression issues. [cite: 399, 402, 403, 409, 547]</li>
+            <li><strong>BOM Management:</strong> Managed a project budget of <strong>$1,859</strong>, overseeing procurement for over 60 line items including sensors, actuators, and custom fabricated parts. [cite: 204]</li>
+        </ul>
 
 					</div>
 
