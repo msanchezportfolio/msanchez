@@ -95,25 +95,33 @@
 
     const globeDiv = document.getElementById('globeViz');
     
-    // We explicitly set the width and height to match the black box
     const world = Globe()
         (globeDiv)
-        .width(globeDiv.offsetWidth) 
+        .width(globeDiv.offsetWidth)
         .height(500)
-        .globeImageUrl('images/earth.png') 
+        .globeImageUrl('images/earth.png')
+        /* --- SIZE ADJUSTMENT --- */
+        /* Lower numbers make the globe appear closer/larger */
+        .pointAltitude(0.1) 
+        /* ----------------------- */
         .labelsData(myTravels)
         .labelLat(d => d.lat)
         .labelLng(d => d.lng)
-        .labelText(d => d.name)
-        .labelSize(1.5)
-        .labelDotRadius(1.0)
+        /* --- HOVER INTERACTION --- */
+        /* This hides the text until you hover over the red dot */
+        .labelText(() => '') 
+        .labelTooltip(d => `<b>${d.name}</b>`) 
+        /* ------------------------- */
+        .labelDotRadius(1.2) // Slightly larger dots to make hovering easier
         .labelColor(() => 'red')
         .labelResolution(2);
 
     world.controls().autoRotate = true;
     world.controls().autoRotateSpeed = 0.7;
 
-    // This ensures that if you resize the window, the globe re-centers
+    // Zoom the camera in slightly to fill the box more
+    world.pointOfView({ alt: 2.2 }); 
+
     window.addEventListener('resize', () => {
         world.width(globeDiv.offsetWidth);
     });
