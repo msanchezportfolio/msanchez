@@ -6,16 +6,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
 		<script src="https://unpkg.com/globe.gl"></script>
+		
 		<style>
-			/* Centers the black box and prevents it from spilling off the page */
+			/* This centers the globe and keeps it perfectly inside the page margins */
 			#globe-container {
 				width: 100%;
 				max-width: 800px;
-				margin: 2rem auto; /* Centers horizontally and adds space above/below */
+				margin: 2rem auto; 
 				background: #000;
 				border-radius: 10px;
-				overflow: hidden; /* Keeps the globe inside the rounded corners */
+				overflow: hidden;
 				box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 			}
 
@@ -24,7 +26,6 @@
 				height: 500px;
 			}
 			
-			/* Adjusts mobile height so it doesn't take up the whole screen */
 			@media screen and (max-width: 480px) {
 				#globeViz { height: 350px; }
 			}
@@ -34,86 +35,93 @@
 
 		<div id="wrapper">
 
-			<header id="header">
-				<a href="index.html" class="logo">Matthew Sanchez</a>
-			</header>
-
-			<nav id="nav">
-				<ul class="links">
-					<li><a href="index.html">Projects</a></li>
-					<li><a href="courses.html">Courses</a></li>
-					<li class="active"><a href="travel.html">Travel</a></li>
-				</ul>
-				<ul class="icons">
-					<li><a href="https://www.linkedin.com/in/matthew-sanchez-/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-				</ul>
-			</nav>
-
-			<div id="main">
-				<section class="post">
-					<header class="major">
-						<h1>My Travels</h1>
-						<p>Exploring the world from UIUC to the Southern Hemisphere.<br />
-						An interactive look at my recent trips and experiences.</p>
+				<header id="header">
+						<a href="index.html" class="logo">Matthew Sanchez</a>
 					</header>
 
-					<div id="globe-container">
-						<div id="globeViz"></div>
+				<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Projects</a></li>
+							<li><a href="courses.html">Courses</a></li>
+							<li class="active"><a href="travel.html">Travel</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/matthew-sanchez-/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</nav>
+
+				<div id="main">
+						<section class="post">
+							<header class="major">
+								<h1>My Travels</h1>
+								<p>Exploring the world from UIUC to the Southern Hemisphere.<br />
+								An interactive look at my international experiences.</p>
+							</header>
+
+							<div id="globe-container">
+								<div id="globeViz"></div>
+							</div>
+
+							<p style="text-align: center; margin-top: 1.5rem;">
+								<em>Click and drag to explore; hover over red dots for locations.</em>
+							</p>
+						</section>
 					</div>
 
-					<p style="text-align: center; margin-top: 1.5rem;">
-						<em>Click and drag to explore; hover over dots for locations.</em>
-					</p>
-				</section>
+				<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a>sanchezmatthew975@gmail.com</a></p>
+							</section>
+						</section>
+					</footer>
+
 			</div>
 
-			<footer id="footer">
-				<section class="split contact">
-					<section>
-						<h3>Email</h3>
-						<p><a>sanchezmatthew975@gmail.com</a></p>
-					</section>
-				</section>
-			</footer>
-
-		</div>
-
 		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-		<script>
-    const myTravels = [
-    { name: 'Tokyo & Kyoto, Japan', lat: 35.6762, lng: 139.6503 },
-    { name: 'Sydney & Perth, Australia', lat: -31.9505, lng: 115.8605 },
-    { name: 'San Francisco, CA', lat: 37.7749, lng: -122.4194 },
-    { name: 'New York City, NY', lat: 40.7128, lng: -74.0060 },
-    { name: 'Champaign, IL', lat: 40.1164, lng: -88.2434 }
-];
+			<script>
+				// Accurate coordinates for your travels
+				const myTravels = [
+					{ name: 'Tokyo & Kyoto, Japan', lat: 35.6762, lng: 139.6503 },
+					{ name: 'Sydney & Perth, Australia', lat: -31.9505, lng: 115.8605 },
+					{ name: 'San Francisco, CA', lat: 37.7749, lng: -122.4194 },
+					{ name: 'New York City, NY', lat: 40.7128, lng: -74.0060 },
+					{ name: 'Champaign, IL', lat: 40.1164, lng: -88.2434 }
+				];
 
-const world = Globe()
-    (document.getElementById('globeViz'))
-    .width(document.getElementById('globeViz').offsetWidth)
-    .height(500)
-    .globeImageUrl('images/earth.jpg') // Points to your new, accurate map
-    .pointsData(myTravels)
-    .pointColor(() => 'red')
-    .pointRadius(0.8)
-    .pointAltitude(0.01)
-    .pointLabel(d => `<b>${d.name}</b>`)
-    .pointOfView({ alt: 2.1 });
-    world.controls().autoRotate = true;
-    world.controls().autoRotateSpeed = 0.7;
+				const globeDiv = document.getElementById('globeViz');
+				
+				// Initialize the Globe
+				const world = Globe()
+					(globeDiv)
+					.width(globeDiv.offsetWidth)
+					.height(500)
+					.globeImageUrl('images/earth.jpg') // Using your NASA Blue Marble map
+					.pointsData(myTravels)
+					.pointColor(() => 'red')
+					.pointRadius(0.8)
+					.pointAltitude(0.01)
+					.pointLabel(d => `<b>${d.name}</b>`)
+					.pointResolution(32);
 
-    // Zoom the camera in (2.0 is closer, 2.5 is further away)
-    world.pointOfView({ alt: 2.1 }); 
+				// Set the zoom (lower is closer)
+				world.pointOfView({ alt: 2.1 });
 
-    window.addEventListener('resize', () => {
-        world.width(globeDiv.offsetWidth);
-    });
-</script>
+				// Flip the power switch to start spinning
+				world.controls().autoRotate = true;
+				world.controls().autoRotateSpeed = 0.7;
+
+				// Recenter the globe if the browser window changes size
+				window.addEventListener('resize', () => {
+					world.width(globeDiv.offsetWidth);
+				});
+			</script>
 
 	</body>
 </html>
