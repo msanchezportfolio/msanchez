@@ -176,9 +176,23 @@
         .globeImageUrl('images/earth.jpg') 
         .pointsData(myTravels)
         .pointColor(() => 'red')
-        .pointRadius(0.6) // Smaller radius for better visibility with more dots
+        .pointRadius(0.6)
         .pointAltitude(0.01)
-        .pointLabel(d => `<b>${d.name}</b>`)
+        /* This is the brute-force fix. It forces white text on a dark background bubble. */
+        .pointLabel(d => `
+            <div style="
+                color: #ffffff !important; 
+                background: rgba(0, 0, 0, 0.85); 
+                padding: 6px 12px; 
+                border-radius: 4px; 
+                border: 1px solid rgba(255, 255, 255, 0.3); 
+                font-weight: bold;
+                font-family: sans-serif;
+                white-space: nowrap;
+            ">
+                ${d.name}
+            </div>
+        `)
         .pointResolution(32);
 
     world.pointOfView({ alt: 2.1 });
