@@ -194,24 +194,21 @@
             </div>
         `)
         .pointResolution(32);
-
-    world.pointOfView({ alt: 2.1 });
+// ... rest of your globe settings ...
     world.controls().autoRotate = true;
     world.controls().autoRotateSpeed = 0.7;
 
-    window.addEventListener('resize', () => {
-        world.width(globeDiv.offsetWidth);
-    });
-    // --- AUTO-PAUSE ON HOVER ---
-// When the mouse enters the globe area, stop the rotation
-globeDiv.addEventListener('mouseenter', () => {
-    world.controls().autoRotate = false;
-});
+    // --- ADD THIS LINE HERE ---
+    world.pointOfView({ lat: 20, lng: -100, alt: 2.1 });
 
-// When the mouse leaves the globe area, start the rotation again
-globeDiv.addEventListener('mouseleave', () => {
-    world.controls().autoRotate = true;
-});
+    // --- AUTO-PAUSE ON HOVER ---
+    globeDiv.addEventListener('mouseenter', () => {
+        world.controls().autoRotate = false;
+    });
+
+    globeDiv.addEventListener('mouseleave', () => {
+        world.controls().autoRotate = true;
+    });
 </script>
 
 	</body>
