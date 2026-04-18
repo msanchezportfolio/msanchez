@@ -190,8 +190,8 @@
         .globeImageUrl('images/earth.jpg') 
         .pointsData(myTravels)
         .pointColor(() => 'red')
-        .pointRadius(0.6)
-        .pointAltitude(0.01)
+        .pointRadius(0.4)
+        .pointAltitude(0.005)
         /* This is the brute-force fix. It forces white text on a dark background bubble. */
         .pointLabel(d => `
             <div style="
@@ -217,11 +217,13 @@
 
     // --- AUTO-PAUSE ON HOVER ---
     globeDiv.addEventListener('mouseenter', () => {
-        world.controls().autoRotate = false;
+        world.controls().autoRotate = true;
+        world.controls().autoRotateSpeed = 0.3;
     });
 
     globeDiv.addEventListener('mouseleave', () => {
         world.controls().autoRotate = true;
+        world.controls().autoRotateSpeed = 1;
     });
 </script>
 
