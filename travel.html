@@ -210,10 +210,10 @@
         .pointResolution(32);
 // ... rest of your globe settings ...
     world.controls().autoRotate = true;
-    world.controls().autoRotateSpeed = 0.7;
+    world.controls().autoRotateSpeed = 1;
 
     // --- ADD THIS LINE HERE ---
-    world.pointOfView({ lat: 20, lng: -100, alt: 2.1 });
+    world.pointOfView({ lat: 20, lng: -30, alt: 2.1 });
 
     // --- AUTO-PAUSE ON HOVER ---
     globeDiv.addEventListener('mouseenter', () => {
