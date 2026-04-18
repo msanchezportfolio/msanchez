@@ -202,6 +202,16 @@
     window.addEventListener('resize', () => {
         world.width(globeDiv.offsetWidth);
     });
+    // --- AUTO-PAUSE ON HOVER ---
+// When the mouse enters the globe area, stop the rotation
+globeDiv.addEventListener('mouseenter', () => {
+    world.controls().autoRotate = false;
+});
+
+// When the mouse leaves the globe area, start the rotation again
+globeDiv.addEventListener('mouseleave', () => {
+    world.controls().autoRotate = true;
+});
 </script>
 
 	</body>
