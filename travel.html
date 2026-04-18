@@ -86,31 +86,24 @@
 
 		<script>
     const myTravels = [
-    // I shifted the Lats slightly to account for the map's vertical stretch
-    { name: 'Tokyo & Kyoto, Japan', lat: 31.0, lng: 139.7 }, 
-    { name: 'Sydney & Perth, Australia', lat: -38.5, lng: 115.8 },
-    { name: 'San Francisco, CA', lat: 33.5, lng: -122.4 },
-    { name: 'New York City, NY', lat: 36.5, lng: -74.0 },
-    { name: 'Champaign, IL', lat: 36.0, lng: -88.2 }
+    { name: 'Tokyo & Kyoto, Japan', lat: 35.6762, lng: 139.6503 },
+    { name: 'Sydney & Perth, Australia', lat: -31.9505, lng: 115.8605 },
+    { name: 'San Francisco, CA', lat: 37.7749, lng: -122.4194 },
+    { name: 'New York City, NY', lat: 40.7128, lng: -74.0060 },
+    { name: 'Champaign, IL', lat: 40.1164, lng: -88.2434 }
 ];
 
-    const globeDiv = document.getElementById('globeViz');
-    
-    const world = Globe()
-        (globeDiv)
-        .width(globeDiv.offsetWidth)
-        .height(500)
-        .globeImageUrl('images/earth.jpg')
-        /* --- THE RED DOTS --- */
-        .pointsData(myTravels)
-        .pointColor(() => 'red')
-        .pointRadius(0.8)      // Adjust this if you want the dots bigger or smaller
-        .pointAltitude(0.01)   // Keeps them flat on the surface
-        /* --- THE HOVER NAMES --- */
-        .pointLabel(d => `<b>${d.name}</b>`) 
-        /* ----------------------- */
-        .pointResolution(32);  // Makes the dots nice and round
-
+const world = Globe()
+    (document.getElementById('globeViz'))
+    .width(document.getElementById('globeViz').offsetWidth)
+    .height(500)
+    .globeImageUrl('images/earth.jpg') // Points to your new, accurate map
+    .pointsData(myTravels)
+    .pointColor(() => 'red')
+    .pointRadius(0.8)
+    .pointAltitude(0.01)
+    .pointLabel(d => `<b>${d.name}</b>`)
+    .pointOfView({ alt: 2.1 });
     world.controls().autoRotate = true;
     world.controls().autoRotateSpeed = 0.7;
 
