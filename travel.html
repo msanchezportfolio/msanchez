@@ -29,19 +29,24 @@
 			@media screen and (max-width: 480px) {
 				#globeViz { height: 350px; }
 			}
-            /* This fixes the dark tooltip issue */
-/* This is a "hammer" to force the tooltip to be readable */
-.globe-wrapper .scene-tooltip, 
+/* High-contrast White Text on Dark Background */
 .scene-tooltip {
-    color: #000000 !important; 
-    background-color: #ffffff !important;
-    background: white !important;
-    border: 1px solid #000 !important;
-    padding: 5px 10px !important;
-    border-radius: 4px !important;
-    font-weight: bold !important;
-    font-family: Arial, sans-serif !important;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.5) !important;
+    color: #ffffff !important; 
+    background-color: rgba(20, 20, 20, 0.9) !important; /* Dark charcoal/black */
+    padding: 6px 12px !important;
+    border-radius: 6px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    font-family: 'Source Sans Pro', sans-serif !important; /* Matches Massively theme */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
+}
+
+/* Forces any nested text to also stay white */
+.scene-tooltip b, 
+.scene-tooltip div, 
+.scene-tooltip span {
+    color: #ffffff !important;
 }
 		</style>
 	</head>
@@ -68,8 +73,7 @@
 						<section class="post">
 							<header class="major">
 								<h1>My Travels</h1>
-								<p>Exploring the world from UIUC to the Southern Hemisphere.<br />
-								An interactive look at my international experiences.</p>
+								<p>An interactive look at my international experiences.</p>
 							</header>
 
 							<div id="globe-container">
