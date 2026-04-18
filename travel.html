@@ -8,11 +8,25 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<script src="https://unpkg.com/globe.gl"></script>
 		<style>
-			#globeViz { 
-				width: 100%; 
-				height: 500px; 
-				background-color: transparent;
-				cursor: move;
+			/* Centers the black box and prevents it from spilling off the page */
+			#globe-container {
+				width: 100%;
+				max-width: 800px;
+				margin: 2rem auto; /* Centers horizontally and adds space above/below */
+				background: #000;
+				border-radius: 10px;
+				overflow: hidden; /* Keeps the globe inside the rounded corners */
+				box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+			}
+
+			#globeViz {
+				width: 100%;
+				height: 500px;
+			}
+			
+			/* Adjusts mobile height so it doesn't take up the whole screen */
+			@media screen and (max-width: 480px) {
+				#globeViz { height: 350px; }
 			}
 		</style>
 	</head>
@@ -20,83 +34,86 @@
 
 		<div id="wrapper">
 
-				<header id="header">
-						<a href="index.html" class="logo">Matthew Sanchez</a>
+			<header id="header">
+				<a href="index.html" class="logo">Matthew Sanchez</a>
+			</header>
+
+			<nav id="nav">
+				<ul class="links">
+					<li><a href="index.html">Projects</a></li>
+					<li><a href="courses.html">Courses</a></li>
+					<li class="active"><a href="travel.html">Travel</a></li>
+				</ul>
+				<ul class="icons">
+					<li><a href="https://www.linkedin.com/in/matthew-sanchez-/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+				</ul>
+			</nav>
+
+			<div id="main">
+				<section class="post">
+					<header class="major">
+						<h1>My Travels</h1>
+						<p>Exploring the world from UIUC to the Southern Hemisphere.<br />
+						An interactive look at my recent trips and experiences.</p>
 					</header>
 
-				<nav id="nav">
-						<ul class="links">
-							<li><a href="index.html">Projects</a></li>
-							<li><a href="courses.html">Courses</a></li>
-							<li class="active"><a href="travel.html">Travel</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/matthew-sanchez-/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						</ul>
-					</nav>
-
-				<div id="main">
-						<section class="post">
-							<header class="major">
-								<h1>My Travels</h1>
-								<p>An interactive look at my travels.<br />
-								From UIUC to Japan, Australia, and beyond.</p>
-							</header>
-							
-							<div id="globeViz"></div>
-							
-							<p style="text-align: center; margin-top: 1rem;">
-								<em>Click and drag to rotate the globe manually.</em>
-							</p>
-						</section>
+					<div id="globe-container">
+						<div id="globeViz"></div>
 					</div>
 
-				<footer id="footer">
-						<section class="split contact">
-							<section>
-								<h3>Email</h3>
-								<p><a>sanchezmatthew975@gmail.com</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="https://www.linkedin.com/in/matthew-sanchez-/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
-
+					<p style="text-align: center; margin-top: 1.5rem;">
+						<em>Click and drag to explore; hover over dots for locations.</em>
+					</p>
+				</section>
 			</div>
 
+			<footer id="footer">
+				<section class="split contact">
+					<section>
+						<h3>Email</h3>
+						<p><a>sanchezmatthew975@gmail.com</a></p>
+					</section>
+				</section>
+			</footer>
+
+		</div>
+
 		<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
-			<script>
-				const myTravels = [
-					{ name: 'Tokyo & Kyoto, Japan', lat: 35.6762, lng: 139.6503 },
-					{ name: 'Sydney & Perth, Australia', lat: -33.8688, lng: 151.2093 },
-					{ name: 'San Francisco, CA', lat: 37.7749, lng: -122.4194 },
-					{ name: 'New York City, NY', lat: 40.7128, lng: -74.0060 },
-					{ name: 'Champaign, IL', lat: 40.1164, lng: -88.2434 }
-				];
+		<script>
+			const myTravels = [
+				{ name: 'Tokyo & Kyoto, Japan', lat: 35.6762, lng: 139.6503 },
+				{ name: 'Sydney & Perth, Australia', lat: -33.8688, lng: 151.2093 },
+				{ name: 'San Francisco, CA', lat: 37.7749, lng: -122.4194 },
+				{ name: 'New York City, NY', lat: 40.7128, lng: -74.0060 },
+				{ name: 'Champaign, IL', lat: 40.1164, lng: -88.2434 }
+			];
 
-				const world = Globe()
-					(document.getElementById('globeViz'))
-					.globeImageUrl('images/earth.png') // Make sure this file exists in your images folder!
-					.pointsData(myTravels)
-					.pointLabel('name')
-					.pointRadius(0.6)
-					.pointColor(() => '#ff0000');
+			const globeDiv = document.getElementById('globeViz');
+			const world = Globe()
+				(globeDiv)
+				.globeImageUrl('images/earth.png') 
+				.labelsData(myTravels)
+				.labelLat(d => d.lat)
+				.labelLng(d => d.lng)
+				.labelText(d => d.name)
+				.labelSize(1.5)
+				.labelDotRadius(1.0) // This creates your red dots
+				.labelColor(() => 'red')
+				.labelResolution(2);
 
-				// Make it spin!
-				world.controls().autoRotate = true;
-				world.controls().autoRotateSpeed = 0.7;
-			</script>
+			world.controls().autoRotate = true;
+			world.controls().autoRotateSpeed = 0.7;
+
+			// This keeps the globe centered if you resize the browser window
+			window.addEventListener('resize', () => {
+				world.width(globeDiv.offsetWidth);
+			});
+		</script>
 
 	</body>
 </html>
