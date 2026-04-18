@@ -119,6 +119,7 @@
         { name: 'Kyoto, Japan', lat: 35.0116, lng: 135.7681 },
         { name: 'Perth, Australia', lat: -31.9505, lng: 115.8605 },
         { name: 'Sydney, Australia', lat: -33.8688, lng: 151.2093 },
+        { name: 'Fremantle, Australia', lat: -32.0569, lng: 115.7439 },
 
         // UK & France
         { name: 'London, UK', lat: 51.5074, lng: -0.1278 },
@@ -213,12 +214,12 @@
     world.controls().autoRotateSpeed = 1;
 
     // --- ADD THIS LINE HERE ---
-    world.pointOfView({ lat: 20, lng: -30, alt: 2.1 });
+    world.pointOfView({ lat: 20, lng: -40, alt: 1.9 });
 
     // --- AUTO-PAUSE ON HOVER ---
     globeDiv.addEventListener('mouseenter', () => {
         world.controls().autoRotate = true;
-        world.controls().autoRotateSpeed = 0.1;
+        world.controls().autoRotateSpeed = 0.05;
     });
 
     globeDiv.addEventListener('mouseleave', () => {
