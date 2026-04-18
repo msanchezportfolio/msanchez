@@ -85,35 +85,39 @@
 		<script src="assets/js/main.js"></script>
 
 		<script>
-			const myTravels = [
-				{ name: 'Tokyo & Kyoto, Japan', lat: 35.6762, lng: 139.6503 },
-				{ name: 'Sydney & Perth, Australia', lat: -33.8688, lng: 151.2093 },
-				{ name: 'San Francisco, CA', lat: 37.7749, lng: -122.4194 },
-				{ name: 'New York City, NY', lat: 40.7128, lng: -74.0060 },
-				{ name: 'Champaign, IL', lat: 40.1164, lng: -88.2434 }
-			];
+    const myTravels = [
+        { name: 'Tokyo & Kyoto, Japan', lat: 35.6762, lng: 139.6503 },
+        { name: 'Sydney & Perth, Australia', lat: -33.8688, lng: 151.2093 },
+        { name: 'San Francisco, CA', lat: 37.7749, lng: -122.4194 },
+        { name: 'New York City, NY', lat: 40.7128, lng: -74.0060 },
+        { name: 'Champaign, IL', lat: 40.1164, lng: -88.2434 }
+    ];
 
-			const globeDiv = document.getElementById('globeViz');
-			const world = Globe()
-				(globeDiv)
-				.globeImageUrl('images/earth.png') 
-				.labelsData(myTravels)
-				.labelLat(d => d.lat)
-				.labelLng(d => d.lng)
-				.labelText(d => d.name)
-				.labelSize(1.5)
-				.labelDotRadius(1.0) // This creates your red dots
-				.labelColor(() => 'red')
-				.labelResolution(2);
+    const globeDiv = document.getElementById('globeViz');
+    
+    // We explicitly set the width and height to match the black box
+    const world = Globe()
+        (globeDiv)
+        .width(globeDiv.offsetWidth) 
+        .height(500)
+        .globeImageUrl('images/earth.png') 
+        .labelsData(myTravels)
+        .labelLat(d => d.lat)
+        .labelLng(d => d.lng)
+        .labelText(d => d.name)
+        .labelSize(1.5)
+        .labelDotRadius(1.0)
+        .labelColor(() => 'red')
+        .labelResolution(2);
 
-			world.controls().autoRotate = true;
-			world.controls().autoRotateSpeed = 0.7;
+    world.controls().autoRotate = true;
+    world.controls().autoRotateSpeed = 0.7;
 
-			// This keeps the globe centered if you resize the browser window
-			window.addEventListener('resize', () => {
-				world.width(globeDiv.offsetWidth);
-			});
-		</script>
+    // This ensures that if you resize the window, the globe re-centers
+    window.addEventListener('resize', () => {
+        world.width(globeDiv.offsetWidth);
+    });
+</script>
 
 	</body>
 </html>
