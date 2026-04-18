@@ -86,12 +86,13 @@
 
 		<script>
     const myTravels = [
-        { name: 'Tokyo & Kyoto, Japan', lat: 35.6762, lng: 139.6503 },
-        { name: 'Sydney & Perth, Australia', lat: -33.8688, lng: 151.2093 },
-        { name: 'San Francisco, CA', lat: 37.7749, lng: -122.4194 },
-        { name: 'New York City, NY', lat: 40.7128, lng: -74.0060 },
-        { name: 'Champaign, IL', lat: 40.1164, lng: -88.2434 }
-    ];
+    // I shifted the Lats slightly to account for the map's vertical stretch
+    { name: 'Tokyo & Kyoto, Japan', lat: 31.0, lng: 139.7 }, 
+    { name: 'Sydney & Perth, Australia', lat: -38.5, lng: 115.8 },
+    { name: 'San Francisco, CA', lat: 33.5, lng: -122.4 },
+    { name: 'New York City, NY', lat: 36.5, lng: -74.0 },
+    { name: 'Champaign, IL', lat: 36.0, lng: -88.2 }
+];
 
     const globeDiv = document.getElementById('globeViz');
     
