@@ -208,25 +208,19 @@
         .pointColor(d => d === hoverObj ? 'orange' : 'red')
         .pointRadius(0.4)
         .pointAltitude(d => d === hoverObj ? 0.01 : 0.005)
-        .pointLabel(d => {
-            // Check if this specific dot is Chicago
-            const isChicago = d.name === 'Chicago, IL';
-            
-            return `
-                <div style="
-                    color: #ffffff !important; 
-                    background: ${isChicago ? 'rgba(184, 134, 11, 0.9)' : 'rgba(0, 0, 0, 0.85)'}; 
-                    padding: 6px 12px; 
-                    border-radius: 4px; 
-                    border: 2px solid ${isChicago ? '#FFD700' : 'rgba(255, 255, 255, 0.3)'}; 
-                    font-weight: bold;
-                    font-family: sans-serif;
-                    white-space: nowrap;
-                ">
-                    ${isChicago ? '⭐ ' : ''}${d.name}
-                </div>
-            `;
-        })
+        .pointLabel(d => `
+            <div style="
+                color: #ffffff !important; 
+                background: rgba(0, 0, 0, 0.85); 
+                padding: 6px 12px; 
+                border-radius: 4px; 
+                border: 1px solid rgba(255, 255, 255, 0.3); 
+                font-weight: bold;
+                font-family: sans-serif;
+                white-space: nowrap;
+            ">
+                ${d.name}
+            </div>
         `)
         /* 2. The Hover Logic (Arrow cursor forced) */
         .onPointHover(obj => {
