@@ -139,6 +139,9 @@
     { name: 'Niagara Falls, Canada', lat: 43.0896, lng: -79.0849 },
     { name: 'New York City, NY', lat: 40.7128, lng: -74.0060 },
     { name: 'Pittsburgh, PA', lat: 40.4406, lng: -79.9959 },
+    { name: 'Hershey, PA', lat: 40.2859, lng: -76.6502 },
+    { name: 'Philadelphia, PA', lat: 39.9526, lng: -75.1652 },
+    { name: 'Atlantic City, NJ', lat: 39.3643, lng: -74.4229 },
 
     // Florida
     { name: 'Tampa, FL', lat: 27.9506, lng: -82.4572 },
@@ -205,19 +208,25 @@
         .pointColor(d => d === hoverObj ? 'orange' : 'red')
         .pointRadius(0.4)
         .pointAltitude(d => d === hoverObj ? 0.01 : 0.005)
-        .pointLabel(d => `
-            <div style="
-                color: #ffffff !important; 
-                background: rgba(0, 0, 0, 0.85); 
-                padding: 6px 12px; 
-                border-radius: 4px; 
-                border: 1px solid rgba(255, 255, 255, 0.3); 
-                font-weight: bold;
-                font-family: sans-serif;
-                white-space: nowrap;
-            ">
-                ${d.name}
-            </div>
+        .pointLabel(d => {
+            // Check if this specific dot is Chicago
+            const isChicago = d.name === 'Chicago, IL';
+            
+            return `
+                <div style="
+                    color: #ffffff !important; 
+                    background: ${isChicago ? 'rgba(184, 134, 11, 0.9)' : 'rgba(0, 0, 0, 0.85)'}; 
+                    padding: 6px 12px; 
+                    border-radius: 4px; 
+                    border: 2px solid ${isChicago ? '#FFD700' : 'rgba(255, 255, 255, 0.3)'}; 
+                    font-weight: bold;
+                    font-family: sans-serif;
+                    white-space: nowrap;
+                ">
+                    ${isChicago ? '⭐ ' : ''}${d.name}
+                </div>
+            `;
+        })
         `)
         /* 2. The Hover Logic (Arrow cursor forced) */
         .onPointHover(obj => {
