@@ -186,16 +186,27 @@
 
     const globeDiv = document.getElementById('globeViz');
     
+    let hoveredPoint = null;
+
     const world = Globe()
         (globeDiv)
         .width(globeDiv.offsetWidth)
         .height(500)
         .globeImageUrl('images/earth.jpg') 
         .pointsData(myTravels)
-        .pointColor(() => 'red')
-        .pointRadius(0.4)
+        
+        // --- UPDATED POINT COLOR LOGIC ---
+        .pointColor(d => d === hoveredPoint ? 'orange' : 'red')
+        .pointRadius(d => d === hoveredPoint ? 0.6 : 0.4) // Bonus: makes the dot slightly bigger on hover
+        
+        // --- ADD HOVER LISTENER ---
+        .onPointHover(point => {
+            hoveredPoint = point;
+            // This line tells the globe to check colors again
+            globeDiv.style.cursor = point ? 'pointer' : 'default';
+        })
+        
         .pointAltitude(0.005)
-        /* This is the brute-force fix. It forces white text on a dark background bubble. */
         .pointLabel(d => `
             <div style="
                 color: #ffffff !important; 
