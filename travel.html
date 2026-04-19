@@ -188,24 +188,17 @@
     
     let hoveredPoint = null;
 
+    let hoverObj = null; 
+
     const world = Globe()
         (globeDiv)
         .width(globeDiv.offsetWidth)
         .height(500)
         .globeImageUrl('images/earth.jpg') 
         .pointsData(myTravels)
-        
-        // --- UPDATED POINT COLOR LOGIC ---
-        .pointColor(d => d === hoveredPoint ? 'orange' : 'red')
-        .pointRadius(d => d === hoveredPoint ? 0.6 : 0.4) // Bonus: makes the dot slightly bigger on hover
-        
-        // --- ADD HOVER LISTENER ---
-        .onPointHover(point => {
-            hoveredPoint = point;
-            // This line tells the globe to check colors again
-            globeDiv.style.cursor = point ? 'pointer' : 'default';
-        })
-        
+        /* 1. The Color Logic */
+        .pointColor(d => d === hoverObj ? 'orange' : 'red')
+        .pointRadius(0.4)
         .pointAltitude(0.005)
         .pointLabel(d => `
             <div style="
@@ -221,6 +214,17 @@
                 ${d.name}
             </div>
         `)
+        /* 2. The Hover Logic (Arrow cursor forced) */
+        .onPointHover(obj => {
+            // This forces the cursor to stay as an arrow (default)
+            globeDiv.style.cursor = 'default'; 
+            
+            if (obj !== hoverObj) {
+                hoverObj = obj;
+                // This "re-links" the data to trigger the color change
+                world.pointsData(myTravels); 
+            }
+        })
         .pointResolution(32);
 // ... rest of your globe settings ...
     world.controls().autoRotate = true;
